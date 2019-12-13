@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>Masonry Image Gallery Widget</title>
+    <authors>Tim Lemke - Seventyeight Digital</authors>
+    <owners>Tim Lemke - Seventyeight Digital</owners>
+    <projectUrl>https://github.com/TimLemke/MasonryImageGalleryWidget</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/Kentico/devnet.kentico.com/master/marketplace/assets/generic-integration.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Masonry image gallery widget using https://masonry.desandro.com/ for Kentico 12 MVC</description>
+    <releaseNotes/>
+    <copyright>Copyright 2019</copyright>
+    <tags>Kentico MVC Widget Masonry Image Gallery</tags>
+    <dependencies>
+      <dependency id="Kentico.AspNet.Mvc" version="12.0.29" />
+    </dependencies>
+  </metadata>
+  <files>
+    <!-- Include the compiled views dll -->
+    <file src="bin\SeventyeightDigital.MasonryImageGalleryWidget.Kentico.MVC.Views.dll" target = "lib\net461" />
+
+    <!-- Sample of how to include this file in the Content of the Nuget, this would cause the SampleIncludeFile.txt to be copied to the SampleResource folder in the project you import the NuGet package in
+	<file src="SampleResource\SampleIncludedFile.txt" target = "Content\SampleResource" />
+	-->
+  </files>
+</package>

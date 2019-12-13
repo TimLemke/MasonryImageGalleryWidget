@@ -1,0 +1,96 @@
+@using Kentico.PageBuilder.Web.Mvc
+@using SeventyeightDigital.MasonryImageGalleryWidget
+@model MasonryImageGalleryWidgetViewModel
+
+@{
+    string gridID = "grid-" + Model.GalleryID;
+    string imageMaxWidth = Model.ColumnWidth + "px";
+    int columnWidth = Model.ColumnWidth;
+    string imagePadding = Model.Padding + "px";
+}
+
+@if (Context.Kentico().PageBuilder().EditMode)
+{
+    if (Model.Urls.Count() != 0)
+    {
+        <div id="@gridID" class="grid" style="        margin: 0 auto;">
+            @for (int i = 0; i < Model.Urls.Count(); i++)
+            {
+                string url = Url.Kentico().ImageUrl(@Model.Urls[i], SizeConstraint.Empty);
+                <div class="grid-item" style="float: left; width: 100%; max-width: @imageMaxWidth; padding: @imagePadding;">
+                    <img style="        display: block;
+        max-width: 100%;" src="@url" />
+                </div>
+            }
+        </div>
+
+        <script>
+        var callback = function () {
+            var grid = document.querySelector('#@gridID');
+            var msnry;
+            imagesLoaded(grid, function () {
+                msnry = new Masonry(grid, {
+                    itemSelector: '.grid-item',
+                    columnWidth: @columnWidth,
+                    isFitWidth: true,
+                    horizontalOrder:  @Html.Raw(Model.HorizontalOrder),
+                    originLeft:  @Html.Raw(Model.RightToLeft),
+                    originTop: @Html.Raw(Model.BottomToTop),
+                });
+            });
+        };
+        if (
+            document.readyState === "complete" ||
+            (document.readyState !== "loading" && !document.documentElement.doScroll)
+        ) {
+            callback();
+        } else {
+            document.addEventListener("DOMContentLoaded", callback);
+        }
+        </script>
+    }
+    else
+    {
+        <p>Select images and adjust options via widget settings.</p>
+    }
+}
+else
+{
+    <div id="@gridID" class="grid" style="        margin: 0 auto;">
+        @for (int i = 0; i < Model.Urls.Count(); i++)
+        {
+            string url = Url.Kentico().ImageUrl(@Model.Urls[i], SizeConstraint.Empty);
+            <div class="grid-item" style="float: left; width: 100%; max-width: @imageMaxWidth; padding: @imagePadding;">
+                <img style="        display: block;
+        max-width: 100%;" src="@url" />
+            </div>
+        }
+    </div>
+
+    <script>
+        var callback = function () {
+            var grid = document.querySelector('#@gridID');
+            var msnry;
+            imagesLoaded(grid, function () {
+                msnry = new Masonry(grid, {
+                    itemSelector: '.grid-item',
+                    columnWidth: @columnWidth,
+                    isFitWidth: true,
+                    horizontalOrder:  @Html.Raw(Model.HorizontalOrder),
+                    originLeft:  @Html.Raw(Model.RightToLeft),
+                    originTop: @Html.Raw(Model.BottomToTop),
+                });
+            });
+        };
+        if (
+            document.readyState === "complete" ||
+            (document.readyState !== "loading" && !document.documentElement.doScroll)
+        ) {
+            callback();
+        } else {
+            document.addEventListener("DOMContentLoaded", callback);
+        }
+    </script>
+}
+
+
